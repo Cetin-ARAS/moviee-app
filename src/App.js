@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function App() {
+  
+  const [movie, setMovies] = useState();
+  console.log("movie", movie);
+  const [loading, setLoading] = useState();
+
+  const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=f4ecdb4b72f19d39698d5ba7e40d30ba`;
+
+  const getMovies = (API) => {
+    setLoading(true);
+    axios
+      .get(API)
+      .then((res) => setMovies(res.data.results))
+      .catch((err) => console.log(err))
+      .finally(setLoading(false));
+  };
+
+  useEffect(() => {
+    getMovies(FEATURED_API);
+  }, []);
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>test</h1>
+      <MovieList movie={movie} />
     </div>
   );
 }
