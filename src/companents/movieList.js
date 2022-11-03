@@ -3,12 +3,17 @@ import {MovieCard} from "./movieCard";
 
 const movieList = ({ movie }) => {
     console.log("movie from movieList", movie);
-  return {
-    <div>
+  return (
+    <div style={{
+        border: "2px solid green", 
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"space-around" }} >
     movieList
-        <MovieCard />
+        {movie?.map((item, indez) =>(
+            <MovieCard item={item] key={index} />
+        ))}
     </div>
   };
 };
 
-export default movieList;
