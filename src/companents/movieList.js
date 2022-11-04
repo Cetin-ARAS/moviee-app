@@ -8,6 +8,7 @@ const movieList = ({ movie }) => {
         border: "2px solid green", 
         display:"flex",
         flexDirection:"row",
+        flexWrap:"wrap",
         justifyContent:"space-around" }} >
     movieList
         {movie?.map((item, indez) =>(
